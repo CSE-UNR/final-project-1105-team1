@@ -7,11 +7,11 @@
 #define ROW_CAP 20
 #define COL_CAP 100
 
-void madlibRead(FILE* fin, int col, int row, char str[][col]);
-void madlibDisplay(int col, int row, char str[][col]);
-void madlibA(int col, int row, int user, char str[][col]);
-void madlibN(int col, int row, int user, char str[][col]);
-void madlibV(int col, int row, int user, char str[][col]);
+void madlibRead(FILE* fin, char str[][COL_CAP]);
+void madlibDisplay(char str[][COL_CAP]);
+void madlibA(int user, char str[][COL_CAP]);
+void madlibN(int user, char str[][COL_CAP]);
+void madlibV(int user, char str[][COL_CAP]);
 void strCopy(char source[][COL_CAP], char dest[][COL_CAP]);
 
 int main(){
@@ -21,14 +21,15 @@ int main(){
 	
 	fp = fopen(FILE_NAME, "r");
 	
-	madlibRead(fp, COL_CAP, ROW_CAP, madLib);
+	madlibRead(fp, madLib);
 	
 	return 0;
 	
 }
 
-void madlibRead(FILE* fin, int col, int row, char str[][col]){
-
+void madlibRead(FILE* fin, char str[][COL_CAP]){
+	int row;
+	int col = 0;
 	for(row = 0; str[row][col] != '\0'; row++){
 		for(col = 0; str[row][col] != '\n'; col++){
 		
@@ -39,7 +40,8 @@ void madlibRead(FILE* fin, int col, int row, char str[][col]){
 }
 
 void strCopy(char source[][COL_CAP], char dest[][COL_CAP]){
-
+	int col;
+	int row;
 	for(row = 0; source[row][col] != '\0'; row++){
 		for(col = 0; source[row][col] != '\n'; col++){
 		
@@ -51,3 +53,12 @@ void strCopy(char source[][COL_CAP], char dest[][COL_CAP]){
 	dest[row][col] = '\0';
 	
 }
+void madlibDisplay(char str[][COL_CAP]){
+	int r;
+	int c;
+	for(r = 0; str[r][c] != '\0'; r++){
+		for(c = 0; str[r][c] != '\0'; c++){
+			printf("%c", str[r][c]);
+		}
+	}
+}	
